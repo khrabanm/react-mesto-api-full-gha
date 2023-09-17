@@ -5,12 +5,12 @@
   
 Пожалуйста, прикрепите в это описание ссылку на сайт, размещенный на Яндекс.Облаке.
 
-Адрес репозитория: https://github.com/kolotilina-d/react-mesto-api-full-gha
+Адрес репозитория: https://github.com/khrabanm/react-mesto-api-full-gha
 
 ## Ссылки на проект
 
-IP 158.160.69.27
+IP 51.250.72.115
 
-Frontend https://mesto.kolotilina.nomoredomainsicu.ru/
+Frontend https://mesto.khrabanm.nomoredomainsrocks.ru/
 
-Backend https://api.mesto.kolotilina.nomoredomainsicu.ru/
+Backend https://api.mesto.khrabanm.nomoredomainsrocks.ru/

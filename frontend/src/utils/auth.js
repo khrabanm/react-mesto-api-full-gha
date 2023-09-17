@@ -1,4 +1,4 @@
-const baseUrl = "https://api.mesto.kolotilina.nomoredomainsicu.ru";
+const baseUrl = "https://api.mesto.khrabanm.nomoredomainsrocks.ru";
 // const baseUrl = "http://localhost:3000";
 function checkResponse(res) {
   return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);

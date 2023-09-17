@@ -99,7 +99,7 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: "https://api.mesto.kolotilina.nomoredomainsicu.ru",
+  baseUrl: "https://api.mesto.khrabanm.nomoredomainsrocks.ru",
   // baseUrl: "http://localhost:3000",
 });
 
