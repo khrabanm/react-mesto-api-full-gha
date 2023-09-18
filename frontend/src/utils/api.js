@@ -2,7 +2,6 @@ class Api {
     
     constructor(options) {
         // receive url server and headers
-        this._headers = options.headers;
         this._url = options.baseUrl;
       }
     
@@ -15,45 +14,55 @@ class Api {
       }
     
       // request to server and get data profile
-      getProfile() {
+      getProfile(jwt) {
         return fetch(`${this._url}/users/me`, {
           method: 'GET',
-          headers: this._headers,
+          headers: {
+            "Content-Type": 'application/json',
+            "Authorization" : `Bearer ${jwt}`},
         }).then(this._handleResponse);
       }
     
       // change profile info on server
-      patchProfile(data) {
+      patchProfile(data, jwt) {
         return fetch(`${this._url}/users/me`, {
           method: 'PATCH',
-          headers: this._headers,
+          headers: {
+            "Content-Type": 'application/json',
+            "Authorization" : `Bearer ${jwt}`},
           body: JSON.stringify(
             { name: data.profileName, about: data.profileJob }
           ),
         }).then(this._handleResponse);
       }
     
-      getInitialCards() {
+      getInitialCards(jwt) {
         return fetch(`${this._url}/cards`, {
           method: 'GET',
-          headers: this._headers,
+          headers: {
+            "Content-Type": 'application/json',
+            "Authorization" : `Bearer ${jwt}`},
         }).then(this._handleResponse);
       }
     
-      setUserAvatar({avatar}) {
+      setUserAvatar({avatar, jwt}) {
         return fetch(`${this._url}/users/me/avatar`, {
           method: 'PATCH',
-          headers: this._headers,
+          headers: {
+            "Content-Type": 'application/json',
+            "Authorization" : `Bearer ${jwt}`},
           body: JSON.stringify({
             avatar,
           }),
         }).then(this._handleResponse);
       }
     
-      addCard({name, link}) {
+      addCard({name, link, jwt}) {
         return fetch(`${this._url}/cards`, {
           method: 'POST',
-          headers: this._headers,
+          headers: {
+            "Content-Type": 'application/json',
+            "Authorization" : `Bearer ${jwt}`},
           body: JSON.stringify({
             name,
             link,
@@ -61,35 +70,38 @@ class Api {
         }).then(this._handleResponse);
       }
     
-      deleteCard(cardId) {
+      deleteCard(cardId, jwt) {
         return fetch(`${this._url}/cards/${cardId}`, {
           method: 'DELETE',
-          headers: this._headers,
+          headers: {
+            "Content-Type": 'application/json',
+            "Authorization" : `Bearer ${jwt}`},
         }).then(this._handleResponse);
       }
     
-      addLike(cardId, isLiked) {
+      addLike(cardId, isLiked, jwt) {
         return fetch(`${this._url}/cards/${cardId}/likes`, {
           method: `${isLiked ? "DELETE" : "PUT"}`,
-          headers: this._headers,
+          headers: {
+            "Content-Type": 'application/json',
+            "Authorization" : `Bearer ${jwt}`},
         }).then(this._handleResponse);
       }
     
-      deleteLike(cardId) {
+      deleteLike(cardId,jwt) {
         return fetch(`${this._url}/cards/${cardId}/likes`, {
           method: 'DELETE',
-          headers: this._headers,
+          headers: {
+            "Content-Type": 'application/json',
+            "Authorization" : `Bearer ${jwt}`},
         }).then(this._handleResponse);
       }
 
 }
 
 const api = new Api({
-    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-66',
-    headers: {
-      authorization: '102a038a-4e75-47d3-b5e0-c0f094086372',
-      'Content-Type': 'application/json'
-    }
+    baseUrl: 'https://api.mesto.khrabanm.nomoredomainsrocks.ru',
+    
   });
 
   export default api;
