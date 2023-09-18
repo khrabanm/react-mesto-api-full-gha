@@ -1,0 +1,4 @@
+.popup__form_avatar {
+    grid-template-rows: 75px 86px;
+    margin: 0px auto 0;
+}

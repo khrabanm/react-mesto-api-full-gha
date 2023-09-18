@@ -1,59 +1,27 @@
-import React, { useEffect } from "react";
-
-function PopupWithForm({
-  name,
-  title,
-  formName,
-  children,
-  isOpen,
-  onClose,
-  buttonText,
-  onSubmit,
-  isSubmit,
-}) {
-  useEffect(() => {
-    if (!isOpen) return;
-
-    function closeByEsc(e) {
-      if (e.key === "Escape") {
-        onClose();
-      }
-    }
-    document.addEventListener("keydown", closeByEsc);
-    return () => document.removeEventListener("keydown", closeByEsc);
-  }, [isOpen, onClose]);
-
+function PopupWithForm({ name, title, submitButtonText, children, isOpen, onClose, onSubmit }) {
   return (
-    <section
-      className={`popup popup_${name} ${isOpen ? "popup_opened" : ""}`}
-      onClick={onClose}
-    >
-      <div className="popup__container" onClick={(e) => e.stopPropagation()}>
-        <form
-          name={formName}
-          className={`popup__info popup__info_${formName}`}
-          onSubmit={onSubmit}
-        >
-          <h2
-            className={`popup__title ${
-              name === "delete-card" ? "popup__title_delete-card" : ""
-            }`}
-          >
-            {title}
-          </h2>
+    <div className={`popup popup_${name} ${isOpen && 'popup_opened'}`}>
+      <div className={`popup__container popup__container_${name}`}>
+        <button
+          type="button"
+          className="popup__close-icon"
+          aria-label="Close"
+          onClick={onClose}
+        ></button>
+        <h2 className="popup__title">{title}</h2>
+        <form className={`popup__form popup__form_${name}`} name={name} onSubmit={onSubmit}>
           {children}
-          <input
-            className={`popup__submit ${
-              name === "delete-card" ? "popup__submit_delete-card" : ""
-            }`}
+          <button
             type="submit"
-            value={isSubmit ? "Сохраняем..." : buttonText}
-          />
+            className="popup__submit-button"
+            aria-label="Сохранить"
+          >
+            {submitButtonText}
+          </button>
         </form>
-        <button type="button" className={`popup__close`} onClick={onClose} />
       </div>
-    </section>
+    </div>
   );
-}
+};
 
-export default PopupWithForm;
+export default PopupWithForm

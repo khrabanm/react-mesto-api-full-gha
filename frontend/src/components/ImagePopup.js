@@ -1,42 +1,19 @@
-import React from "react";
-import { useEffect } from "react";
-
 function ImagePopup({ card, onClose }) {
-  useEffect(() => {
-    if (card.link === undefined) return;
-
-    function closeByEsc(e) {
-      if (e.key === "Escape") {
-        onClose();
-      }
-    }
-    document.addEventListener("keydown", closeByEsc);
-    return () => document.removeEventListener("keydown", closeByEsc);
-  }, [card, onClose]);
 
   return (
-    <section
-      className={`popup popup_photo ${
-        card.link !== undefined ? "popup_opened" : ""
-      }`}
-      onClick={onClose}
-    >
-      <div className="popup__container popup__container_photo">
-        <img
-          className="popup__img"
-          src={card.link}
-          alt={card.name}
-          onClick={(e) => e.stopPropagation()}
-        />
-        <figcaption className="popup__caption">{card.name}</figcaption>
+    <div className={`popup popup_image ${card ? 'popup_opened' : ''}`}>
+      <div className={`popup__container popup__container_image`}>
         <button
           type="button"
-          className="popup__close popup__close_photo"
+          className="popup__close-icon"
+          aria-label="Close"
           onClick={onClose}
-        />
+        ></button>
+        <img className="popup__image" src={card?.link} alt={card?.name} />
+        <h2 className="popup__heading">{card?.name}</h2>
       </div>
-    </section>
-  );
-}
+    </div>
+  )
+};
 
-export default ImagePopup;
+export default ImagePopup

@@ -1,14 +1,17 @@
 .header__logo {
-  display: block;
-  padding: 45px 0 41px;
-  background: url(../../../images/logo.svg) no-repeat center left;
-  min-height: 33px;
+  width: 142px;
+  height: 33px;
 }
 
-@media screen and (max-width: 950px) {
+.header__logo:hover {
+  opacity: 0.5;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 880px) {
   .header__logo {
-    padding: 28px 0 30px;
-    background: url(../../../images/logo_mini.svg) no-repeat center left;
-    min-height: 24.4px;
+    padding-left: 27px;
+    width: 104px;
+    height: 24px;
   }
 }

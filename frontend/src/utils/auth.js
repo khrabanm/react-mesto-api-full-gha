@@ -1,42 +1,50 @@
-const baseUrl = "https://api.mesto.khrabanm.nomoredomainsrocks.ru";
-// const baseUrl = "http://localhost:3000";
-function checkResponse(res) {
-  return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
+export const BASE_URL = "https://auth.nomoreparties.co";
+
+function checkApi(res) {
+  if (res.ok) {
+    return res.json();
+  } else {
+    Promise.reject(`Ошибка: ${res.status}`);
+  }
 }
 
-export function autentification(email, pass) {
-  return fetch(`${baseUrl}/signup`, {
+export const register = (email, password) => {
+  return fetch(`${BASE_URL}/signup`, {
     method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email: email, password: password }),
+  }).then((res) => checkApi(res));
+};
+
+export const authorization = (email, password) => {
+  return fetch(`${BASE_URL}/signin`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ email: email, password: password }),
+  })
+    .then((res) => checkApi(res))
+    .then((data) => {
+      if (data.token) {
+        const token = data.token;
+        localStorage.setItem("token", token);
+        return token;
+      }
+    });
+};
+
+export const getUser = (token) => {
+  return fetch(`${BASE_URL}/users/me`, {
+    method: "GET",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({
-      password: pass,
-      email: email,
-    }),
-  }).then(checkResponse);
-}
-
-export function autorisation(email, pass) {
-  return fetch(`${baseUrl}/signin`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      password: pass,
-      email: email,
-    }),
-  }).then(checkResponse);
-}
-
-export function checkUser(jwt) {
-  return fetch(`${baseUrl}/users/me`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${jwt}`,
-    },
-  }).then(checkResponse);
-}
+  })
+    .then((res) => checkApi(res))
+    .then((data) => data);
+};

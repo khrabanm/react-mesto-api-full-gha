@@ -1,16 +1,19 @@
 .popup__container {
-  box-sizing: border-box;
   position: relative;
-  background-color: #ffff;
-  color: black;
-  max-width: 430px;
+  top: 50%;
+  left: 50%;
+  width: 430px;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  z-index: 2;
   border-radius: 10px;
-  padding: 0 36px 0;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
+  text-align: center;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 767px) {
   .popup__container {
-    max-width: 283px;
-    padding: 0 22px 0;
+    width: 282px;
   }
 }
+
