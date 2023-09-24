@@ -27,9 +27,9 @@ export const authorization = (email, password) => {
     body: JSON.stringify({ email: email, password: password }),
   })
     .then((res) => checkApi(res))
-    .then((data) => {
-      if (data.token) {
-        const token = data.token;
+    .then(({ data }) => {
+      if (data.newToken) {
+        const token = data.newToken;
         localStorage.setItem("token", token);
         return token;
       }

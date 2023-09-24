@@ -49,7 +49,7 @@ function App() {
     if (jwt) setToken(jwt);
     api
       .getProfile()
-      .then((data) => {
+      .then(({data}) => {
         setCurrentUser(data);
       })
       .catch((err) => {

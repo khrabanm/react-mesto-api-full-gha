@@ -5,12 +5,12 @@
   
 Пожалуйста, прикрепите в это описание ссылку на сайт, размещенный на Яндекс.Облаке.
 
-Адрес репозитория: https://github.com/khrabanm/react-mesto-api-full-gha
+Адрес репозитория: https://github.com/khrabanm/mesto-full
 
 ## Ссылки на проект
 
-IP 51.250.72.115
+IP 158.160.55.112
 
-Frontend https://mesto.khrabanm.nomoredomainsrocks.ru/
+Frontend https://mesto.khrabanm.nomoredomainsrocks.ru
 
-Backend https://api.mesto.khrabanm.nomoredomainsrocks.ru/
+Backend https://api.mesto.khrabanm.nomoredomainsrocks.ru
