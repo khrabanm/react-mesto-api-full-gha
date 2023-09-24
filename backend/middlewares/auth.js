@@ -5,7 +5,6 @@ const ErrorAccess = require('../utils/errors/ErrorAccess');
 
 const { JWT_SECRET, NODE_ENV } = process.env;
 
-
 const handleAuthError = (req, res, next) => next(new ErrorAccess('Необходима авторизация'));
 // eslint-disable-next-line consistent-return
 const auth = (req, res, next) => {

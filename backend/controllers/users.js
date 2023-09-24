@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken');
 const {
   DEV_SECRET, ERROR_CODE_UNIQUE, STATUS_OK, CREATED,
 } = require('../utils/constants');
+
 const { JWT_SECRET, NODE_ENV } = process.env;
 const BadRequest = require('../utils/errors/BadRequest');
 const NotFound = require('../utils/errors/NotFound');
@@ -23,7 +24,7 @@ const getUsers = (req, res, next) => {
 const findById = (req, res, next, id) => {
   User.findById(id)
     .orFail(new NotFound(`Пользователь по указанному id: ${id} не найден`))
-    .then((user) => res.send({data: user}))
+    .then((user) => res.send({ data: user }))
     .catch(next);
 };
 
@@ -52,7 +53,7 @@ const createUser = (req, res, next) => {
           about,
           avatar,
           email,
-        }
+        },
       });
     })
     .catch((err) => {
@@ -120,7 +121,7 @@ const login = (req, res, next) => {
               maxAge: 36000 * 24 * 7,
               httpOnly: true,
               sameSite: true,
-            }).send({ data: { newToken }});
+            }).send({ data: { newToken } });
           } else {
             next(new ErrorAccess('Неверный логин или пароль'));
           }
