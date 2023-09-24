@@ -9,7 +9,7 @@ const handleAuthError = (req, res, next) => next(new ErrorAccess('Необход
 // eslint-disable-next-line consistent-return
 const auth = (req, res, next) => {
   const { authorization } = req.headers;
-  const token = authorization.replace('Bearer ', '');
+  const token = authorization && authorization.replace('Bearer ', '');
   try {
     if (!token) {
       return handleAuthError(req, res, next);
