@@ -33,6 +33,7 @@ function App() {
   const navigate = useNavigate();
 
   React.useEffect(() => {
+    if (isLoggedIn) {
     const jwt = localStorage.getItem("jwt");
     if (jwt) setToken(jwt);
     api.getInitialCards()
@@ -42,9 +43,11 @@ function App() {
       .catch((err) => {
         console.log(`Ошибка ${err}`);
       });
-  }, []);
+    }
+  }, [isLoggedIn]);
 
   React.useEffect(() => {
+    if (isLoggedIn) {
     const jwt = localStorage.getItem("jwt");
     if (jwt) setToken(jwt);
     api
@@ -55,7 +58,8 @@ function App() {
       .catch((err) => {
         console.log(`Ошибка ${err}`);
       });
-  }, []);
+    }
+  }, [isLoggedIn]);
 
   function onSignOut() {
     localStorage.removeItem("token");
@@ -86,7 +90,7 @@ function App() {
 
   function handleCardLike(card) {
     // Снова проверяем, есть ли уже лайк на этой карточке
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    const isLiked = card.likes.some(i => i === currentUser._id);
     // Отправляем запрос в API и получаем обновлённые данные карточки
     api
       .addLike(card._id, isLiked)
@@ -189,7 +193,6 @@ function App() {
     auth
       .authorization(email, password)
       .then((token) => {
-        localStorage.setItem("token", token);
         setToken(token);
       })
       .catch((err) => console.log(err));
