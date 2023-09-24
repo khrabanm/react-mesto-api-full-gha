@@ -5,7 +5,7 @@
   
 Пожалуйста, прикрепите в это описание ссылку на сайт, размещенный на Яндекс.Облаке.
 
-Адрес репозитория: https://github.com/khrabanm/mesto-full
+Адрес репозитория: https://github.com/khrabanm/react-mesto-api-full-gha
 
 ## Ссылки на проект
 
